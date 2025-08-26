@@ -1,0 +1,13 @@
+@use './variaveis' as *;
+
+.cabecalho{
+    background-color: $accent;
+    height: 80px;
+    display: flex;
+    align-items: center;
+
+    h1{
+        color: $backgrond;
+      
+    }
+}
