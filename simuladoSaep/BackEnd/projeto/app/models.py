@@ -1,7 +1,6 @@
 from django.db import models
 
 class Usuario (models.Model):
-    ni = models.IntegerField(unique=True)
     nome = models.CharField(max_length=100)
     email = models.CharField(max_length=100)
 
