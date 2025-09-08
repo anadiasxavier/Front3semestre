@@ -7,6 +7,12 @@ class UsuarioSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class TarefaSerializer(serializers.ModelSerializer):
+    status_display = serializers.SerializerMethodField()
+
     class Meta:
         model = Tarefa
-        fields = '__all__'
+        fields = ['id', 'nome', 'descricao', 'nomeSetor', 'dataCadastro', 
+                  'prioridade', 'status', 'usuario', 'status_display']
+
+    def get_status_display(self, obj):
+        return obj.get_status_display()

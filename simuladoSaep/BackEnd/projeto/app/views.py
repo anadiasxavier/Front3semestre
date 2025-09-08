@@ -5,6 +5,7 @@ from .serializers import UsuarioSerializer, TarefaSerializer
 from django.http import Http404
 from rest_framework.response import Response
 from rest_framework.exceptions import NotFound
+from rest_framework import status
 
 #Criar e listar usuario
 class UsuarioListCreate(ListCreateAPIView):
@@ -50,9 +51,14 @@ class TarefaRetrieveUpdateDestroy(RetrieveUpdateDestroyAPIView):
         try:
             return super().get_object()
         except Http404:
-            raise NotFound(detail="Essa tarefa foi não encontrada.")
+            raise NotFound(detail="Essa tarefa não foi encontrada.")
     
-    # mesnsagem de erro quando o usuario é excluida com sucesso
     def destroy(self, request, *args, **kwargs):
-        super().destroy(request, *args, **kwargs)
-        return Response({"A tarefa foi excluída"})
+        try:
+            tarefa = self.get_object()
+            tarefa.delete()
+            return Response({"mensagem": "Tarefa excluída com sucesso"}, status=status.HTTP_200_OK)
+        except Http404:
+            raise NotFound("Essa tarefa não foi encontrada.")
+        except Exception as e:
+            return Response({"erro": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
