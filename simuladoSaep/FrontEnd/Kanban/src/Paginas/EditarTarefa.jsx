@@ -1,3 +1,19 @@
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { z } from 'zod'; // se estiver criando o schema aqui
+import axios from 'axios';
+
+const schemaEditarTarefas = z.object({
+    prioridade: z.enum(['Baixa', 'Média', 'Alta'], {
+        required_error: 'Selecione uma prioridade válida',
+    }),
+    status: z.enum(['A fazer', 'Fazendo', 'Pronto'], {
+        required_error: 'Selecione um status válido',
+    }),
+});
+
 export function EditarTarefa(){
     const { id } = useParams();
     const [tarefa, setTarefa] = useState(null);
