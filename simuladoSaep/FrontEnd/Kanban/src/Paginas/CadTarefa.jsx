@@ -81,44 +81,53 @@ export function CadTarefa() {
         }
     }
     return (
-        <form className="formularios" onSubmit={handleSubmit(criarTarefa)}>
+        <form className="formularios" onSubmit={handleSubmit(criarTarefa)} noValidate>
             <h2>Cadastro de tarefas</h2>
 
-            <label>Nome da tarefa:</label>
-            <input type='text' placeholder='Digite o nome da tarefa aqui: ' {...register("nome")} />
+            <label htmlFor="nome">Nome da tarefa:</label>
+            <input type='text' placeholder='Digite o nome da tarefa aqui: ' {...register("nome")}
+                aria-invalid={errors.nome ? "true" : "false"}
+                aria-describedby={errors.nome ? "nome-error" : undefined}/>
             {/* Aqui eu vejo a variavel errors no campo nome e exibo a mensagem para o usuário */}
-            {errors.nome && <p>{errors.nome.message}</p>}
-
-            <label>Descrição:</label>
-            <textarea  placeholder='Digite sua descrição aqui: '  {...register("descricao")} />
+            {errors.nome && <p id="nome-error">{errors.nome.message}</p>}
+            <label htmlFor="descricao">Descrição:</label>
+            <textarea  placeholder='Digite sua descrição aqui: '  {...register("descricao")}
+                aria-invalid={errors.descricao ? "true" : "false"}
+                aria-describedby={errors.descricao ? "descricao-error" : undefined}/>
             {/* Aqui eu vejo a variavel errors no campo nome e exibo a mensagem para o usuário */}
-            {errors.descricao && <p>{errors.descricao.message}</p>}
+             {errors.descricao && <p id="descricao-error">{errors.descricao.message}</p>}
 
-            <label>Setor:</label>
-            <input type='text' placeholder='Digite seu setor aqui: '  {...register("nomeSetor")} onChange={handleSetorChange} />
+            <label htmlFor="nomeSetor">Setor:</label>
+            <input type='text' placeholder='Digite seu setor aqui: '  {...register("nomeSetor")} onChange={handleSetorChange} 
+                aria-invalid={errors.nomeSetor ? "true" : "false"}
+                aria-describedby={errors.nomeSetor ? "nomeSetor-error" : undefined}/>
             {/* Aqui eu vejo a variavel errors no campo nome e exibo a mensagem para o usuário */}
-            {errors.nomeSetor && <p>{errors.nomeSetor.message}</p>}
+            {errors.nomeSetor && <p id="nomeSetor-error">{errors.nomeSetor.message}</p>}
 
-            <label>Prioridade:</label>
-            <select  placeholder='Escolha sua prioridade: '  {...register("prioridade")}>
+            <label htmlFor="prioridade">Prioridade:</label>
+            <select  placeholder='Escolha sua prioridade: '  {...register("prioridade")}
+                aria-invalid={errors.prioridade ? "true" : "false"}
+                aria-describedby={errors.prioridade ? "prioridade-error" : undefined}>
             {/* Aqui eu vejo a variavel errors no campo nome e exibo a mensagem para o usuário */}
                 <option value="B">Baixa</option>
                 <option value="M">Média</option>
                 <option value="A">Alta</option>
             </select>
-            {errors.prioridade && <p>{errors.prioridade.message}</p>}
+            {errors.prioridade && <p id="prioridade-error">{errors.prioridade.message}</p>}
 
-            <label>Status::</label>
-            <select  placeholder='Escolha seu status: ' {...register("status")}>
+            <label htmlFor="status">Status:</label>
+            <select  placeholder='Escolha seu status: ' {...register("status")}
+                aria-invalid={errors.status ? "true" : "false"}
+                aria-describedby={errors.status ? "status-error" : undefined}>
             {/* Aqui eu vejo a variavel errors no campo nome e exibo a mensagem para o usuário */}
                 <option value="A">A fazer</option>
-                {/* <option value="F">Fazendo</option>
-                <option value="P">Pronto</option> */}
             </select>
-            {errors.status && <p>{errors.status.message}</p>}
+            {errors.status && <p id="status-error">{errors.status.message}</p>}
 
-            <label>Usuário:</label>
-            <select {...register('usuario')}>
+            <label htmlFor="usuario">Usuário:</label>
+            <select {...register('usuario')}
+                aria-invalid={errors.usuario ? "true" : "false"}
+                aria-describedby={errors.usuario ? "usuario-error" : undefined}>
                 <option value="">Selecione um usuário</option>
                 {usuarios.map(user => (
                     <option key={user.id} value={user.id}>
@@ -126,7 +135,7 @@ export function CadTarefa() {
                     </option>
                 ))}
             </select>
-            {errors.usuario && <p>{errors.usuario.message}</p>}
+            {errors.usuario && <p id="usuario-error">{errors.usuario.message}</p>}
 
             <button type='submit'>Cadastrar Tarefa</button>
 

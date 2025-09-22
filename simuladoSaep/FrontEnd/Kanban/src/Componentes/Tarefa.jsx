@@ -1,12 +1,21 @@
 import axios from 'axios';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+//fazendo o uso do Drag
+import { useDraggable } from '@dnd-kit/core'; //usando a biblioteca de arrastar
 
 export function Tarefa({ tarefa }){
 
     const [status, setStatus] = useState(tarefa.status || "");
     const navigate = useNavigate();
 
+    const { attributes, listeners, setNodeRef, transform } = useDraggable({
+        id:tarefa.id,
+    });
+
+    const style =  transform
+        //pega os pontos cartesinos X e Y para dar a sensação de arrasto para o usuario
+        ? { transform: `translate(${transform.x}px, ${transform.y}px)` } : undefined;
     //fazendo a exclusao de uma tarefa 
     //async é pq eu nao sei exatamente o tempo de resposta
     // as funções devee ter nome que remeta a sua funcionalidade
@@ -37,8 +46,8 @@ export function Tarefa({ tarefa }){
         }
     }
     return(
-        <article>
-            <h3 id={`tarefa: ${tarefa.id}`}>{tarefa.descricao}</h3>
+       <article className="tarefa" ref={setNodeRef} style={style} {...listeners} {...attributes} aria-labelledby={`tarefa-descricao-${tarefa.id}`} role="group">
+            <h3 id={`tarefa-descricao-${tarefa.id}`}>{tarefa.descricao}</h3>
             <dl>
                 <dt>Setor:</dt>
                 <dd>{tarefa.nomeSetor}</dd>
@@ -46,26 +55,32 @@ export function Tarefa({ tarefa }){
                 <dd>{tarefa.prioridade}</dd>               
             </dl>
 
-            <button onClick={()=> navigate(`/editarTarefa/${tarefa.id}`)}>Editar</button>
-            <button onClick={()=> exclusaoTarefa(tarefa.id)}>Excluir</button>
+            <button onClick={()=> navigate(`/editarTarefa/${tarefa.id}`)}
+                onPointerDown={(e) => e.stopPropagation()}
+                aria-label={`Editar tarefa: ${tarefa.descricao}`}>Editar</button>
+            <button onClick={()=> exclusaoTarefa(tarefa.id)}
+                onPointerDown={(e) => e.stopPropagation()}
+                aria-label={`Excluir tarefa: ${tarefa.descricao}`}>Excluir</button>
+
             <form >
-                <label>Status:</label>
+                <label htmlFor={`status-select-${tarefa.id}`}>Status:</label>
                 {/* //se houver mudança no campo status isso é um evento
                 //esse evento é armazenando no state de status */}
                 
-                <select
-                name="status"
-                id={tarefa.id}
-                value={status}
-                onChange={(e) => setStatus(e.target.value)}
-                >
+                <select name="status" id={`status-select-${tarefa.id}`}
+                value={status} onChange={(e) => setStatus(e.target.value)}>
+
                 <option value="">Selecione</option>
                 <option value="A">A fazer</option>
                 <option value="F">Fazendo</option>
                 <option value="P">Pronto</option>
                 </select>
-                <button type="button" onClick={alterarStatus}>Alterar Status</button>
+
+                <button type="button" onClick={alterarStatus}
+                 onPointerDown={(e) => e.stopPropagation()}
+                 aria-label={`Alterar status da tarefa: ${tarefa.descricao}`}>Alterar Status</button>
             </form>
         </article>
     )
 }
+

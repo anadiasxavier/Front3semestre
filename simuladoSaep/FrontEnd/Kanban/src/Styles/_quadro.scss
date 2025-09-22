@@ -2,16 +2,25 @@
 
 .conteiner {
   display: flex;
-  gap: 16px; // espaço entre as colunas
+  gap: 16px; 
   padding: 16px;
+  flex-direction: column;
+  align-items: center;
+
 }
 
 .coluna {
   background-color: #eaeaea;
   padding: 12px;
   border-radius: 10px;
-  width: 400px; // largura fixa para cada coluna
-  min-height: 400px; // altura mínima da coluna
+  width: 400px; 
+  min-height: 400px; 
   display: flex;
   flex-direction: column;
+}
+
+.atividades{
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
 }
