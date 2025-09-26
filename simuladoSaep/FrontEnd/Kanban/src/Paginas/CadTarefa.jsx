@@ -85,7 +85,7 @@ export function CadTarefa() {
             <h2>Cadastro de tarefas</h2>
 
             <label htmlFor="nome">Nome da tarefa:</label>
-            <input type='text' placeholder='Digite o nome da tarefa aqui: ' {...register("nome")}
+            <input  type='text' placeholder='Digite o nome da tarefa aqui: ' {...register("nome")}
                 aria-invalid={errors.nome ? "true" : "false"}
                 aria-describedby={errors.nome ? "nome-error" : undefined}/>
             {/* Aqui eu vejo a variavel errors no campo nome e exibo a mensagem para o usuário */}
