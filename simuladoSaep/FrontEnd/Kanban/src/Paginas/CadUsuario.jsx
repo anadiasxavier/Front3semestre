@@ -77,13 +77,13 @@ export function CadUsuario() {
             <input type='text' id='nome' placeholder='Jose da Silva' {...register("nome")}  onChange={handleNomeChange} />
              
             {/* Aqui eu vejo a variavel errors no campo nome e exibo a mensagem para o usuário */}
-            {errors.nome && <p>{errors.nome.message}</p>}
+            {errors.nome && <p id="nome-error" className="errors">{errors.nome.message}</p>}
 
             <label htmlFor='email'>E-mail</label>
             <input type='email' id='email' placeholder='email@email.com'  {...register("email")}  onChange={handleEmailChange}/>
             {/* Aqui eu vejo a variavel errors no campo nome e exibo a mensagem para o usuário */}
-            {errors.email && <p>{errors.email.message}</p>}
-
+             {errors.email && <p id="email-error" className="errors">{errors.email.message}</p>}
+             
             <button type='submit'>Cadastrar</button>
 
         </form>

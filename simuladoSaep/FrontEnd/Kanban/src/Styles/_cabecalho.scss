@@ -1,13 +1,16 @@
 @use './variaveis' as *;
 
+// estilos do cabeçalho
 .cabecalho{
     background-color: $accent;
     height: 80px;
     display: flex;
     align-items: center;
+    justify-content: center;
 
     h1{
         color: $backgrond;
-      
+        display: flex;
+        font-family: $font-primary;
     }
 }

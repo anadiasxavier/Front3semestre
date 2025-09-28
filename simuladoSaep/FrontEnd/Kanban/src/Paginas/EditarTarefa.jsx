@@ -56,34 +56,41 @@ export function EditarTarefa(){
     if (!tarefa) return <p>Carregando...</p>;
 
     return (
-        <section>
-            <h2>Editar Tarefa</h2>
-            <form className="formularios"onSubmit={handleSubmit(salvarEdicao)}>
-                <label>Descrição:</label>
-                <textarea value={tarefa.descricao} readOnly />
+        <form className="formularios" onSubmit={handleSubmit(salvarEdicao)} noValidate>
+    <label htmlFor="descricao">Descrição:</label>
+    <textarea id="descricao" value={tarefa.descricao} readOnly aria-readonly="true" />
 
-                <label>Setor:</label>
-                <input type="text" value={tarefa.nomeSetor} readOnly />
+    <label htmlFor="nomeSetor">Setor:</label>
+    <input type="text" id="nomeSetor" value={tarefa.nomeSetor} readOnly aria-readonly="true" />
 
-                <label>Prioridade:</label>
-                <select {...register('prioridade')}>
-                    <option value="">Selecione</option>
-                    <option value="Baixa">Baixa</option>
-                    <option value="Média">Média</option>
-                    <option value="Alta">Alta</option>
-                </select>
-                {errors.prioridade && <p>{errors.prioridade.message}</p>}
+    <label htmlFor="prioridade">Prioridade:</label>
+    <select
+        id="prioridade"
+        {...register('prioridade')}
+        aria-invalid={errors.prioridade ? "true" : "false"}
+        aria-describedby={errors.prioridade ? "prioridade-error" : undefined}
+    >
+        <option value="">Selecione</option>
+        <option value="Baixa">Baixa</option>
+        <option value="Média">Média</option>
+        <option value="Alta">Alta</option>
+    </select>
+    {errors.prioridade && <p id="prioridade-error" className="errors">{errors.prioridade.message}</p>}
 
-                <label>Status:</label>
-                <select {...register('status')}>
-                    <option value="A fazer">A fazer</option>
-                    <option value="Fazendo">Fazendo</option>
-                    <option value="Pronto">Pronto</option>
-                </select>
-                {errors.status && <p>{errors.status.message}</p>}
+    <label htmlFor="status">Status:</label>
+    <select
+        id="status"
+        {...register('status')}
+        aria-invalid={errors.status ? "true" : "false"}
+        aria-describedby={errors.status ? "status-error" : undefined}
+    >
+        <option value="A fazer">A fazer</option>
+        <option value="Fazendo">Fazendo</option>
+        <option value="Pronto">Pronto</option>
+    </select>
+    {errors.status && <p id="status-error" className="errors">{errors.status.message}</p>}
 
-                <button type="submit">Editar</button>
-            </form>
-        </section>
+    <button type="submit">Editar</button>
+</form>
     );
 }

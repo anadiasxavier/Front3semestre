@@ -2,7 +2,7 @@
  
 .formularios{
     max-width: 600px;
-    margin: 20px;
+    margin: 20px auto;
     padding: 10px;
     background-color: $backgrond;
     border-radius: 10px;
@@ -14,7 +14,7 @@
  
     h2{
         text-align: center;
-        margin-bottom: 2px;
+        margin-bottom: 10px;
         font-size: 18px;
         font-family: Arial, Helvetica, sans-serif;
         color:$primary;
@@ -23,15 +23,17 @@
  
         label{
             font-weight: bold;
-            margin-bottom: 10px;
-            color: $primary
+            color: $primary;
         }
-        input{
+        input,
+        textarea,
+        select{
             padding: 10px;
             border: 1px solid $primary;
             border-radius: 8px;
             font-size: 16px;
         }
+
         button{
             padding: 10px;
             background-color: $accent;

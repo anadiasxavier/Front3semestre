@@ -85,20 +85,20 @@ export function CadTarefa() {
             <h2>Cadastro de tarefas</h2>
 
             <label htmlFor="nome">Nome da tarefa:</label>
-            <input  type='text' placeholder='Digite o nome da tarefa aqui: ' {...register("nome")}
+            <input id="nome"  type='text' placeholder='Digite o nome da tarefa aqui: ' {...register("nome")}
                 aria-invalid={errors.nome ? "true" : "false"}
                 aria-describedby={errors.nome ? "nome-error" : undefined}/>
             {/* Aqui eu vejo a variavel errors no campo nome e exibo a mensagem para o usuário */}
             {errors.nome && <p id="nome-error">{errors.nome.message}</p>}
             <label htmlFor="descricao">Descrição:</label>
-            <textarea  placeholder='Digite sua descrição aqui: '  {...register("descricao")}
+            <textarea id="descricao" placeholder='Digite sua descrição aqui: '  {...register("descricao")}
                 aria-invalid={errors.descricao ? "true" : "false"}
                 aria-describedby={errors.descricao ? "descricao-error" : undefined}/>
             {/* Aqui eu vejo a variavel errors no campo nome e exibo a mensagem para o usuário */}
              {errors.descricao && <p id="descricao-error">{errors.descricao.message}</p>}
 
             <label htmlFor="nomeSetor">Setor:</label>
-            <input type='text' placeholder='Digite seu setor aqui: '  {...register("nomeSetor")} onChange={handleSetorChange} 
+            <input id="nomeSetor" type='text' placeholder='Digite seu setor aqui: '  {...register("nomeSetor")} onChange={handleSetorChange} 
                 aria-invalid={errors.nomeSetor ? "true" : "false"}
                 aria-describedby={errors.nomeSetor ? "nomeSetor-error" : undefined}/>
             {/* Aqui eu vejo a variavel errors no campo nome e exibo a mensagem para o usuário */}
