@@ -45,22 +45,35 @@ export function Tarefa({ tarefa }){
             alert("Houve um erro na aleração de status");
         }
     }
+
+    function traduzPrioridade(codigo) {
+    switch (codigo) {
+        case "A": return "Alto";
+        case "M": return "Médio";
+        case "B": return "Baixo";
+        default: return "Desconhecida";
+    }
+    }
+
     return(
-       <article className="tarefa" ref={setNodeRef} style={style} {...listeners} {...attributes} aria-labelledby={`tarefa-descricao-${tarefa.id}`} role="group">
-            <h3 id={`tarefa-descricao-${tarefa.id}`}>{tarefa.descricao}</h3>
+       <article className="tarefa" ref={setNodeRef} style={style} {...listeners} {...attributes}  >
+            <h3 id={`tarefa-nome-${tarefa.id}`}>{tarefa.nome}</h3>
+            <h4 id={`tarefa-descricao-${tarefa.id}`}>{tarefa.descricao}</h4>
             <dl>
+                <dt>Responsável:</dt>
+                <dd>{tarefa.usuario.nome}</dd>
                 <dt>Setor:</dt>
                 <dd>{tarefa.nomeSetor}</dd>
                 <dt>Prioridade:</dt>
-                <dd>{tarefa.prioridade}</dd>               
+                <dd>{traduzPrioridade(tarefa.prioridade)}</dd>   
             </dl>
 
             <button onClick={()=> navigate(`/editarTarefa/${tarefa.id}`)}
                 onPointerDown={(e) => e.stopPropagation()}
-                aria-label={`Editar tarefa: ${tarefa.descricao}`}>Editar</button>
+                aria-label={`Editar tarefa: ${tarefa.nome}`}>Editar</button>
             <button onClick={()=> exclusaoTarefa(tarefa.id)}
                 onPointerDown={(e) => e.stopPropagation()}
-                aria-label={`Excluir tarefa: ${tarefa.descricao}`}>Excluir</button>
+                aria-label={`Excluir tarefa: ${tarefa.nome}`}>Excluir</button>
 
             <form >
                 <label htmlFor={`status-select-${tarefa.id}`}>Status:</label>

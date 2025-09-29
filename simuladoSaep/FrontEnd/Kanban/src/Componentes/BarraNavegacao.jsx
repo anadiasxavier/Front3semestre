@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 
+//Barra de navegação principal
 export function BarraNavegacao() {
   return (
     <nav className="barra" aria-label="Barra de navegação principal">
@@ -11,7 +12,7 @@ export function BarraNavegacao() {
           <Link to="/cadTarefa" aria-label="ir para tela de cadastro de tarefa">Cadastro de Tarefa</Link>
         </li>
         <li>
-          <Link to="/"  aria-label="ir para tela de cadastro de gerenciamento">Gerenciamento de Tarefas</Link>
+          <Link to="/"  aria-label="ir para tela de gerenciamento de tarefas">Gerenciamento de Tarefas</Link>
         </li>
       </ul>
     </nav>

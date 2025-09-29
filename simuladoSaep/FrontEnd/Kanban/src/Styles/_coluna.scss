@@ -1,7 +1,7 @@
 @use './variaveis' as *;
 
 .coluna{
-    background-color: $backgrond;
+    background-color: $primary;
     border: 2px solid $secondary;
     border: 6px;
     padding: 1rem;
@@ -11,7 +11,7 @@
 
     .titulo{
         font-size: 18px;
-        color: $primary;
+        color: $backgrond;
         text-align: center;
         font-family: $font-primary;
     }

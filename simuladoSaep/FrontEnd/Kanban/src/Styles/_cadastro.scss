@@ -4,7 +4,7 @@
     max-width: 600px;
     margin: 20px auto;
     padding: 10px;
-    background-color: $backgrond;
+   
     border-radius: 10px;
     display: flex;
     flex-direction: column;
@@ -44,7 +44,7 @@
             cursor: pointer;
         }
         .errors{
-            font-size: 12px;
+            font-size: 16px;
             color:red;            
         }
  

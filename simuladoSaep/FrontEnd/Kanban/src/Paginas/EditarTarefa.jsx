@@ -5,6 +5,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod'; // se estiver criando o schema aqui
 import axios from 'axios';
 
+//validação com zod
 const schemaEditarTarefas = z.object({
     prioridade: z.enum(['Baixa', 'Média', 'Alta'], {
         required_error: 'Selecione uma prioridade válida',
@@ -15,8 +16,8 @@ const schemaEditarTarefas = z.object({
 });
 
 export function EditarTarefa(){
-    const { id } = useParams();
-    const [tarefa, setTarefa] = useState(null);
+    const { id } = useParams(); //pega o id
+    const [tarefa, setTarefa] = useState(null); //estado que guarda a tarefa
 
     const {
         register,
@@ -25,6 +26,7 @@ export function EditarTarefa(){
         reset,
     } = useForm({ resolver: zodResolver(schemaEditarTarefas) });
 
+    //busca os dados da tarefa
     useEffect(() => {
         axios
             .get(`http://127.0.0.1:8000/api/tarefa/${id}/`)
@@ -39,6 +41,7 @@ export function EditarTarefa(){
             .catch((err) => console.error("Erro ao buscar tarefa", err));
     }, [id, reset]);
 
+    //envia a edição
     async function salvarEdicao(data) {
         const payload = {
             prioridade: data.prioridade === 'Baixa' ? 'B' : data.prioridade === 'Média' ? 'M' : 'A',
@@ -56,7 +59,10 @@ export function EditarTarefa(){
     if (!tarefa) return <p>Carregando...</p>;
 
     return (
-        <form className="formularios" onSubmit={handleSubmit(salvarEdicao)} noValidate>
+    <form className="formularios" onSubmit={handleSubmit(salvarEdicao)} noValidate>
+    <label htmlFor="nome">Nome da Tarefa:</label>
+    <input id="nome" value={tarefa.nome} readOnly aria-readonly="true" />
+
     <label htmlFor="descricao">Descrição:</label>
     <textarea id="descricao" value={tarefa.descricao} readOnly aria-readonly="true" />
 

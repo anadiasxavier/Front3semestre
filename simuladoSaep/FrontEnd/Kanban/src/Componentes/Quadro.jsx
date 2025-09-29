@@ -3,6 +3,8 @@ import axios from 'axios';
 import { Coluna } from "./Coluna";
 import {DndContext} from '@dnd-kit/core'; //é o uso da biblioteca de clicar e arrastar
 
+import { restrictToFirstScrollableAncestor } from "@dnd-kit/modifiers";
+
 export function Quadro() {
     const [tarefas, setTarefas] = useState([]);
 
@@ -49,15 +51,15 @@ export function Quadro() {
 
 
     return (
-        <DndContext onDragEnd={handleDragEnd}>
-            <main className="conteiner" aria-label="quadro de tarefas">
-                <h1>Meu quadro</h1>
-                 <section className="atividades" aria-label="Colunas de tarefas">
-                    <Coluna id = 'A' titulo="A fazer" tarefas={tarefasAfazer} />
-                    <Coluna id = 'F' titulo="Fazendo" tarefas={tarefasFazendo} />
-                    <Coluna id = 'P' titulo="Pronto" tarefas={tarefasPronto} />
-                </section>
-            </main>
-        </DndContext>
-    );
+  <DndContext onDragEnd={handleDragEnd} modifiers={[restrictToFirstScrollableAncestor]}>
+    <main className="conteiner" aria-label="quadro de tarefas">
+      <h1>Meu quadro</h1>
+      <section className="atividades" aria-label="Colunas de tarefas" role="region">
+        <Coluna id='A' titulo="A fazer" tarefas={tarefasAfazer} />
+        <Coluna id='F' titulo="Fazendo" tarefas={tarefasFazendo} />
+        <Coluna id='P' titulo="Pronto" tarefas={tarefasPronto} />
+      </section>
+    </main>
+  </DndContext>
+);
 }

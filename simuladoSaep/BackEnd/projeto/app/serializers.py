@@ -8,7 +8,8 @@ class UsuarioSerializer(serializers.ModelSerializer):
 
 class TarefaSerializer(serializers.ModelSerializer):
     status_display = serializers.SerializerMethodField()
-
+    usuario = UsuarioSerializer(read_only=True)
+    
     class Meta:
         model = Tarefa
         fields = ['id', 'nome', 'descricao', 'nomeSetor', 'dataCadastro', 

@@ -1,24 +1,32 @@
 // Tarefa.scss
+@use'./variaveis.scss' as *;
 
 article {
-  width: 280px;
+  width: 320px;
   min-height: 100px;
   background-color: #f9f9f9; 
   border: 2px solid #ccc;    
   border-radius: 12px;       
   padding: 16px;
-  margin-bottom: 16px;
+    margin: 20px auto 16px auto;
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
   transition: transform 0.2s, box-shadow 0.2s;
-
+  
 
   h3 {
     margin-top: 0;
     margin-bottom: 12px;
-    font-size: 1.1rem;
+    font-size: 24px;
     color: #333;
   }
-
+  h4 {
+  word-wrap: break-word;    
+  overflow-wrap: break-word; 
+  white-space: pre-wrap;    
+  font-size: 0.95rem;
+  color: #444;
+  margin: 0 0 10px 0;
+}
   dl {
     display: flex;
     flex-direction: column;
@@ -27,7 +35,9 @@ article {
     dt {
       font-weight: bold;
       font-size: 0.9rem;
-      color: #555;
+      color: #525252;
+      margin-top: 5px;
+ 
     }
 
     dd {
@@ -41,7 +51,7 @@ article {
     padding: 6px 12px;
     margin-right: 8px;
     margin-top: 8px;
-    background-color: #4caf50;
+    background-color: $primary;
     color: white;
     border: none;
     border-radius: 6px;
@@ -49,7 +59,7 @@ article {
     font-size: 0.9rem;
 
     &:hover {
-      background-color: #45a049;
+      background-color: $primary;
     }
   }
 
@@ -71,10 +81,10 @@ article {
     }
 
     button {
-      background-color: #2196f3;
+      background-color: $accent;
 
       &:hover {
-        background-color: #1976d2;
+        background-color: $accent;
       }
     }
   }

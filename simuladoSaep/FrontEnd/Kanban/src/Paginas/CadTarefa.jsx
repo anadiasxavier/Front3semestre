@@ -14,8 +14,8 @@ const schemaCadTarefa = z.object({
         .max(30, 'Insira até 30 caracteres'),
     descricao: z.string()
         .trim()
-        .min(10, 'Insira no minimo caracteres na descrição ')
-        .max(255, 'Insira uma escrição com até 255 carateres'),
+        .min(10, 'Insira no minimo 10 caracteres na descrição ')
+        .max(255, 'Insira uma descrição com até 255 carateres'),
     nomeSetor: z.string()
         .trim()
         .min(1, 'Informe o nome do setor')
@@ -85,27 +85,27 @@ export function CadTarefa() {
             <h2>Cadastro de tarefas</h2>
 
             <label htmlFor="nome">Nome da tarefa:</label>
-            <input id="nome"  type='text' placeholder='Digite o nome da tarefa aqui: ' {...register("nome")}
+            <input id="nome"  type='text' placeholder='Digite o nome da tarefa aqui ' {...register("nome")}
                 aria-invalid={errors.nome ? "true" : "false"}
                 aria-describedby={errors.nome ? "nome-error" : undefined}/>
             {/* Aqui eu vejo a variavel errors no campo nome e exibo a mensagem para o usuário */}
-            {errors.nome && <p id="nome-error">{errors.nome.message}</p>}
+            {errors.nome && <p  className="errors"  id="nome-error">{errors.nome.message}</p>}
             <label htmlFor="descricao">Descrição:</label>
-            <textarea id="descricao" placeholder='Digite sua descrição aqui: '  {...register("descricao")}
+            <textarea id="descricao" placeholder='Digite sua descrição aqui '  {...register("descricao")}
                 aria-invalid={errors.descricao ? "true" : "false"}
                 aria-describedby={errors.descricao ? "descricao-error" : undefined}/>
             {/* Aqui eu vejo a variavel errors no campo nome e exibo a mensagem para o usuário */}
-             {errors.descricao && <p id="descricao-error">{errors.descricao.message}</p>}
+             {errors.descricao && <p  className="errors" id="descricao-error">{errors.descricao.message}</p>}
 
             <label htmlFor="nomeSetor">Setor:</label>
-            <input id="nomeSetor" type='text' placeholder='Digite seu setor aqui: '  {...register("nomeSetor")} onChange={handleSetorChange} 
+            <input id="nomeSetor" type='text' placeholder='Digite seu setor aqui '  {...register("nomeSetor")} onChange={handleSetorChange} 
                 aria-invalid={errors.nomeSetor ? "true" : "false"}
                 aria-describedby={errors.nomeSetor ? "nomeSetor-error" : undefined}/>
             {/* Aqui eu vejo a variavel errors no campo nome e exibo a mensagem para o usuário */}
-            {errors.nomeSetor && <p id="nomeSetor-error">{errors.nomeSetor.message}</p>}
+            {errors.nomeSetor && <p  className="errors"  id="nomeSetor-error">{errors.nomeSetor.message}</p>}
 
             <label htmlFor="prioridade">Prioridade:</label>
-            <select  placeholder='Escolha sua prioridade: '  {...register("prioridade")}
+            <select id="prioridade"  placeholder='Escolha sua prioridade: '  {...register("prioridade")}
                 aria-invalid={errors.prioridade ? "true" : "false"}
                 aria-describedby={errors.prioridade ? "prioridade-error" : undefined}>
             {/* Aqui eu vejo a variavel errors no campo nome e exibo a mensagem para o usuário */}
@@ -113,29 +113,32 @@ export function CadTarefa() {
                 <option value="M">Média</option>
                 <option value="A">Alta</option>
             </select>
-            {errors.prioridade && <p id="prioridade-error">{errors.prioridade.message}</p>}
+            {errors.prioridade && <p  className="errors" id="prioridade-error">{errors.prioridade.message}</p>}
 
             <label htmlFor="status">Status:</label>
-            <select  placeholder='Escolha seu status: ' {...register("status")}
+            <select id="status" placeholder='Escolha seu status: ' {...register("status")}
                 aria-invalid={errors.status ? "true" : "false"}
                 aria-describedby={errors.status ? "status-error" : undefined}>
             {/* Aqui eu vejo a variavel errors no campo nome e exibo a mensagem para o usuário */}
                 <option value="A">A fazer</option>
             </select>
-            {errors.status && <p id="status-error">{errors.status.message}</p>}
+            {errors.status && <p  className="errors" id="status-error">{errors.status.message}</p>}
 
             <label htmlFor="usuario">Usuário:</label>
-            <select {...register('usuario')}
-                aria-invalid={errors.usuario ? "true" : "false"}
-                aria-describedby={errors.usuario ? "usuario-error" : undefined}>
-                <option value="">Selecione um usuário</option>
-                {usuarios.map(user => (
-                    <option key={user.id} value={user.id}>
-                        {user.nome}
+            <select id="usuario" {...register('usuario')}
+            aria-invalid={errors.usuario ? "true" : "false"}
+            aria-describedby={errors.usuario ? "usuario-error" : undefined}>
+            <option value="">Selecione um usuário</option>
+            {usuarios.map(user => {
+                const nomeSomente = user.nome.replace(/^\d+\s*-\s*/, '');
+                return (
+                    <option key={user.id} value={nomeSomente}>
+                        {nomeSomente}
                     </option>
-                ))}
+                );
+            })}
             </select>
-            {errors.usuario && <p id="usuario-error">{errors.usuario.message}</p>}
+            {errors.usuario && <p   className="errors"  id="usuario-error">{errors.usuario.message}</p>}
 
             <button type='submit'>Cadastrar Tarefa</button>
 
