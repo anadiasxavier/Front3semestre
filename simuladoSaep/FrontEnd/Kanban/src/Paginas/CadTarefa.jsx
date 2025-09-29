@@ -23,10 +23,13 @@ const schemaCadTarefa = z.object({
         .regex(/^[A-Za-zÀ-ÖØ-öø-ÿ ]+$/, 'o nome do setor não pode conter números ou símbolos'),
     prioridade: z.enum(['B', 'M', 'A']),
     status: z.enum(['A', 'F', 'P']),
-   usuario: z.coerce.number().min(1, "Escolha um usuário."),
+   usuario_id: z.number({
+        required_error: "Selecione um usuário"
+    }).int().positive("ID do usuário inválido"), // espera id do usuário
+
         
 
-})
+});
 
 
 export function CadTarefa() {
@@ -83,13 +86,15 @@ export function CadTarefa() {
     return (
         <form className="formularios" onSubmit={handleSubmit(criarTarefa)} noValidate>
             <h2>Cadastro de tarefas</h2>
-
+            {/* NOME TAREFA */}
             <label htmlFor="nome">Nome da tarefa:</label>
             <input id="nome"  type='text' placeholder='Digite o nome da tarefa aqui ' {...register("nome")}
                 aria-invalid={errors.nome ? "true" : "false"}
                 aria-describedby={errors.nome ? "nome-error" : undefined}/>
             {/* Aqui eu vejo a variavel errors no campo nome e exibo a mensagem para o usuário */}
             {errors.nome && <p  className="errors"  id="nome-error">{errors.nome.message}</p>}
+
+            {/* DESCRICAO */}
             <label htmlFor="descricao">Descrição:</label>
             <textarea id="descricao" placeholder='Digite sua descrição aqui '  {...register("descricao")}
                 aria-invalid={errors.descricao ? "true" : "false"}
@@ -97,6 +102,7 @@ export function CadTarefa() {
             {/* Aqui eu vejo a variavel errors no campo nome e exibo a mensagem para o usuário */}
              {errors.descricao && <p  className="errors" id="descricao-error">{errors.descricao.message}</p>}
 
+            {/* SETOR */}
             <label htmlFor="nomeSetor">Setor:</label>
             <input id="nomeSetor" type='text' placeholder='Digite seu setor aqui '  {...register("nomeSetor")} onChange={handleSetorChange} 
                 aria-invalid={errors.nomeSetor ? "true" : "false"}
@@ -104,6 +110,7 @@ export function CadTarefa() {
             {/* Aqui eu vejo a variavel errors no campo nome e exibo a mensagem para o usuário */}
             {errors.nomeSetor && <p  className="errors"  id="nomeSetor-error">{errors.nomeSetor.message}</p>}
 
+            {/* PRIORIDADE */}
             <label htmlFor="prioridade">Prioridade:</label>
             <select id="prioridade"  placeholder='Escolha sua prioridade: '  {...register("prioridade")}
                 aria-invalid={errors.prioridade ? "true" : "false"}
@@ -115,6 +122,7 @@ export function CadTarefa() {
             </select>
             {errors.prioridade && <p  className="errors" id="prioridade-error">{errors.prioridade.message}</p>}
 
+            {/* STATUS */}
             <label htmlFor="status">Status:</label>
             <select id="status" placeholder='Escolha seu status: ' {...register("status")}
                 aria-invalid={errors.status ? "true" : "false"}
@@ -124,20 +132,23 @@ export function CadTarefa() {
             </select>
             {errors.status && <p  className="errors" id="status-error">{errors.status.message}</p>}
 
+            {/* USUARIO */}
             <label htmlFor="usuario">Usuário:</label>
                 <select
-  id="usuario"
-  {...register("usuario", { valueAsNumber: true })}
-  aria-required="true"
-  aria-invalid={errors.usuario ? "true" : "false"}
->
-  <option value={0}>Selecione um usuário</option>
-  {usuarios.map(u => (
-      <option key={u.id} value={u.id}>{u.nome}</option>
-  ))}
-</select>
+                id="usuario"
+                {...register('usuario_id', { valueAsNumber: true })}
+                aria-invalid={errors.usuario ? "true" : "false"}
+                aria-describedby={errors.usuario ? "usuario-error" : undefined}>
+                <option value="">Selecione o usuário</option>
+                {usuarios.map((user) => (
+                    <option key={user.id} value={user.id}>
+                        {user.nome}
+                    </option>
+                ))}
+            </select>
             {errors.usuario && <p   className="errors"  id="usuario-error">{errors.usuario.message}</p>}
-
+            
+    -
             <button type='submit'>Cadastrar Tarefa</button>
 
         </form>

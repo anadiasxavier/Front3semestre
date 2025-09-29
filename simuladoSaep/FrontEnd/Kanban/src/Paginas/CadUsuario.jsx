@@ -73,12 +73,14 @@ export function CadUsuario() {
         <form className="formularios" onSubmit={handleSubmit(obterdados)}>
             <h2>Cadastro do Usuário</h2>
 
+            {/* NOME */}
             <label htmlFor='nome'>Nome:</label>
             <input type='text' id='nome' placeholder='Jose da Silva' {...register("nome")}  onChange={handleNomeChange} />
              
             {/* Aqui eu vejo a variavel errors no campo nome e exibo a mensagem para o usuário */}
             {errors.nome && <p id="nome-error" className="errors">{errors.nome.message}</p>}
 
+            {/* EMAIL */}
             <label htmlFor='email'>E-mail</label>
             <input type='email' id='email' placeholder='email@email.com'  {...register("email")}  onChange={handleEmailChange}/>
             {/* Aqui eu vejo a variavel errors no campo nome e exibo a mensagem para o usuário */}

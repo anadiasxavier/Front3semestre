@@ -60,15 +60,19 @@ export function EditarTarefa(){
 
     return (
     <form className="formularios" onSubmit={handleSubmit(salvarEdicao)} noValidate>
+    {/* NOME TAREFA */}
     <label htmlFor="nome">Nome da Tarefa:</label>
     <input id="nome" value={tarefa.nome} readOnly aria-readonly="true" />
-
+    
+    {/* DESCRICAO */}
     <label htmlFor="descricao">Descrição:</label>
     <textarea id="descricao" value={tarefa.descricao} readOnly aria-readonly="true" />
-
+    
+    {/* NOME SETOR */}
     <label htmlFor="nomeSetor">Setor:</label>
     <input type="text" id="nomeSetor" value={tarefa.nomeSetor} readOnly aria-readonly="true" />
 
+    {/* PRIORIDADE */}
     <label htmlFor="prioridade">Prioridade:</label>
     <select
         id="prioridade"
@@ -82,7 +86,8 @@ export function EditarTarefa(){
         <option value="Alta">Alta</option>
     </select>
     {errors.prioridade && <p id="prioridade-error" className="errors">{errors.prioridade.message}</p>}
-
+    
+    {/* STATUS */}
     <label htmlFor="status">Status:</label>
     <select
         id="status"

@@ -7,15 +7,25 @@ class UsuarioSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class TarefaSerializer(serializers.ModelSerializer):
-    usuario = serializers.PrimaryKeyRelatedField(queryset=Usuario.objects.all())
-    usuario_detalhes = UsuarioSerializer(source='usuario', read_only=True)
-    status_display = serializers.SerializerMethodField()
+   
+    usuario = UsuarioSerializer(read_only=True)
+
+   
+    usuario_id = serializers.PrimaryKeyRelatedField(
+        queryset=Usuario.objects.all(),
+        source='usuario',
+        write_only=True
+    )
+
     
+    status_display = serializers.SerializerMethodField()
 
     class Meta:
         model = Tarefa
-        fields = ['id', 'nome', 'descricao', 'nomeSetor', 'dataCadastro',
-                  'prioridade', 'status', 'usuario', 'usuario_detalhes', 'status_display']
+        fields = [
+            'id', 'nome', 'descricao', 'nomeSetor', 'dataCadastro',
+            'prioridade', 'status', 'usuario', 'usuario_id', 'status_display'
+        ]
 
     def get_status_display(self, obj):
         return obj.get_status_display()
