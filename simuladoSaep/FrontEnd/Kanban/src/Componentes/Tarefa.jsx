@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 //fazendo o uso do Drag
 import { useDraggable } from '@dnd-kit/core'; //usando a biblioteca de arrastar
 
+
 export function Tarefa({ tarefa }){
 
     const [status, setStatus] = useState(tarefa.status || "");

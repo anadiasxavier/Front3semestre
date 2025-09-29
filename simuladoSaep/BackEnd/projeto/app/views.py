@@ -39,8 +39,7 @@ class TarefaListCreate (ListCreateAPIView):
     serializer_class = TarefaSerializer
 
     def perform_create(self, serializer):
-        serializer.save()
-
+           serializer.save()
 
 #Deletar, visualizar, atualizar tarefas
 class TarefaRetrieveUpdateDestroy(RetrieveUpdateDestroyAPIView):

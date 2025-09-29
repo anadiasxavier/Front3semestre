@@ -23,7 +23,7 @@ const schemaCadTarefa = z.object({
         .regex(/^[A-Za-zÀ-ÖØ-öø-ÿ ]+$/, 'o nome do setor não pode conter números ou símbolos'),
     prioridade: z.enum(['B', 'M', 'A']),
     status: z.enum(['A', 'F', 'P']),
-    usuario: z.string().trim().min(1, "Escolha um usuário."),
+   usuario: z.coerce.number().min(1, "Escolha um usuário."),
         
 
 })
@@ -125,19 +125,17 @@ export function CadTarefa() {
             {errors.status && <p  className="errors" id="status-error">{errors.status.message}</p>}
 
             <label htmlFor="usuario">Usuário:</label>
-            <select id="usuario" {...register('usuario')}
-            aria-invalid={errors.usuario ? "true" : "false"}
-            aria-describedby={errors.usuario ? "usuario-error" : undefined}>
-            <option value="">Selecione um usuário</option>
-            {usuarios.map(user => {
-                const nomeSomente = user.nome.replace(/^\d+\s*-\s*/, '');
-                return (
-                    <option key={user.id} value={nomeSomente}>
-                        {nomeSomente}
-                    </option>
-                );
-            })}
-            </select>
+                <select
+  id="usuario"
+  {...register("usuario", { valueAsNumber: true })}
+  aria-required="true"
+  aria-invalid={errors.usuario ? "true" : "false"}
+>
+  <option value={0}>Selecione um usuário</option>
+  {usuarios.map(u => (
+      <option key={u.id} value={u.id}>{u.nome}</option>
+  ))}
+</select>
             {errors.usuario && <p   className="errors"  id="usuario-error">{errors.usuario.message}</p>}
 
             <button type='submit'>Cadastrar Tarefa</button>
