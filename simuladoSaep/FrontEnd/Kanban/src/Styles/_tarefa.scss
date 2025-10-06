@@ -18,6 +18,8 @@ article {
     margin-bottom: 12px;
     font-size: 24px;
     color: #333;
+     word-wrap: break-word;    
+  overflow-wrap: break-word;
   }
   h4 {
   word-wrap: break-word;    
@@ -31,6 +33,7 @@ article {
     display: flex;
     flex-direction: column;
     gap: 6px;
+    
 
     dt {
       font-weight: bold;

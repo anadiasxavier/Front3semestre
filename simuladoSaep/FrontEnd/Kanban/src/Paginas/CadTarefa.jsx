@@ -50,7 +50,10 @@ export function CadTarefa() {
             status: "A", 
         },
     });
-
+        const handleNomeChange = (e) => {
+        const valor = e.target.value.slice(0, 30); 
+        setValue('nome', valor, { shouldValidate: true });
+        };
         // setor
         const handleSetorChange = (e) => {
             let valor = e.target.value.replace(/[^A-Za-zÀ-ÖØ-öø-ÿ ]+/g, '');
@@ -88,7 +91,7 @@ export function CadTarefa() {
             <h2>Cadastro de tarefas</h2>
             {/* NOME TAREFA */}
             <label htmlFor="nome">Nome da tarefa:</label>
-            <input id="nome"  type='text' placeholder='Digite o nome da tarefa aqui ' {...register("nome")}
+            <input id="nome"  type='text' placeholder='Digite o nome da tarefa aqui ' {...register("nome")}  onChange={handleNomeChange}
                 aria-invalid={errors.nome ? "true" : "false"}
                 aria-describedby={errors.nome ? "nome-error" : undefined}/>
             {/* Aqui eu vejo a variavel errors no campo nome e exibo a mensagem para o usuário */}
