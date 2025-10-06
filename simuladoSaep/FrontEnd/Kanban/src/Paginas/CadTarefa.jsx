@@ -144,12 +144,12 @@ export function CadTarefa() {
                 aria-describedby={errors.usuario ? "usuario-error" : undefined}>
                 <option value="">Selecione o usuário</option>
                 {usuarios.map((user) => (
-                    <option key={user.id} value={user.id}>
+                    <option key={user.id} value={user.id}>QAA
                         {user.nome}
                     </option>
                 ))}
             </select>
-            {errors.usuario && <p   className="errors"  id="usuario-error">{errors.usuario.message}</p>}
+            {errors.usuario && <p   className="errors"  id="usuario-error">{errors.usuario_id.message}</p>}
             
     -
             <button type='submit'>Cadastrar Tarefa</button>
