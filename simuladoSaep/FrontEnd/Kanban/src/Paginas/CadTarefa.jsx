@@ -87,7 +87,7 @@ export function CadTarefa() {
         }
     }
     return (
-        <form className="formularios" onSubmit={handleSubmit(criarTarefa)} noValidate>
+        <form className="formularios" onSubmit={handleSubmit(criarTarefa)} noValidate data-testid="form-tarefa">
             <h2>Cadastro de tarefas</h2>
             {/* NOME TAREFA */}
             <label htmlFor="nome">Nome da tarefa:</label>
@@ -136,22 +136,23 @@ export function CadTarefa() {
             {errors.status && <p  className="errors" id="status-error">{errors.status.message}</p>}
 
             {/* USUARIO */}
+            {/* USUARIO */}
             <label htmlFor="usuario">Usuário:</label>
-                <select
-                id="usuario"
-                {...register('usuario_id', { valueAsNumber: true })}
-                aria-invalid={errors.usuario ? "true" : "false"}
-                aria-describedby={errors.usuario ? "usuario-error" : undefined}>
-                <option value="">Selecione o usuário</option>
-                {usuarios.map((user) => (
-                    <option key={user.id} value={user.id}>QAA
-                        {user.nome}
-                    </option>
-                ))}
+            <select
+            id="usuario"
+            {...register('usuario_id', { valueAsNumber: true })}
+            aria-invalid={errors.usuario_id ? "true" : "false"}
+            aria-describedby={errors.usuario_id ? "usuario-error" : undefined}
+            >
+            <option value="">Selecione o usuário</option>
+            {usuarios.map((user) => (
+                <option key={user.id} value={user.id}>
+                {user.nome}
+                </option> ))}
             </select>
-            {errors.usuario && <p   className="errors"  id="usuario-error">{errors.usuario_id.message}</p>}
-            
-    -
+            {errors.usuario_id && <p className="errors" id="usuario-error">{errors.usuario_id.message}</p>}
+
+
             <button type='submit'>Cadastrar Tarefa</button>
 
         </form>
