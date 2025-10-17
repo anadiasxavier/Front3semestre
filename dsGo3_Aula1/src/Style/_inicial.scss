@@ -8,11 +8,11 @@
     gap: 20px;
 
     .logo {
-        height: 80%;
+        height: 50%;
     }
 
     .entrar {
-        background: $botao-azul;
+        background: $botao-verde;
         color: #fff;
         padding: 15px 40px;
         border: none;
@@ -26,12 +26,12 @@
 
         &:hover {
             transform: scale(1.05);
-            background: $botao-amarelo;
+            background:$botao-verdeClaro;
             color: #04010f;
         }
 
         &:focus {
-            outline: 3px solid #ffd700;
+            outline: 3px solid #6be585;
             outline-offset: 3px;
         }
     
