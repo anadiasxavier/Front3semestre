@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import sucesso from "../assets/win.png";
 import erro from "../assets/raios.png";
 
@@ -6,6 +6,15 @@ export function MissaoModal({ missao, onClose, onConcluir }) {
   const [resposta, setResposta] = useState("");
   const [resultado, setResultado] = useState(null);
   const [status, setStatus] = useState(null);
+
+  const inputRef = useRef(null);
+
+
+  useEffect(() => {
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, []);
 
   const verificarResposta = () => {
     if (!resposta.trim()) {
@@ -20,7 +29,7 @@ export function MissaoModal({ missao, onClose, onConcluir }) {
       setResultado("Resposta correta! Parabéns!");
       setStatus("sucesso");
 
-      // ✅ chama a função de concluir após 1s (tempo para mostrar feedback)
+     
       setTimeout(() => {
         onConcluir(missao.id);
       }, 1000);
@@ -30,17 +39,32 @@ export function MissaoModal({ missao, onClose, onConcluir }) {
     }
   };
 
+
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === "Escape") onClose();
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [onClose]);
+
   return (
-    <dialog open className="modal">
-      <h2 className="titulo" id="titulo-missao">
-        {missao.titulo}
-      </h2>
+    <dialog
+      open
+      className="modal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="titulo-missao"
+      aria-describedby="descricao-missao"
+    >
+      <h2 id="titulo-missao">{missao.titulo}</h2>
       <p id="descricao-missao">{missao.descricao}</p>
 
       <label htmlFor="resposta" className="sr-only">
         Digite sua resposta
       </label>
       <input
+        ref={inputRef}
         className="caixaTexto"
         id="resposta"
         type="text"
@@ -48,15 +72,24 @@ export function MissaoModal({ missao, onClose, onConcluir }) {
         value={resposta}
         onChange={(e) => setResposta(e.target.value)}
         required
+        aria-required="true"
       />
 
       <div className="modal-botoes">
-        <button onClick={verificarResposta}>Enviar</button>
-        <button onClick={onClose}>Fechar</button>
+        <button onClick={verificarResposta} aria-label="Enviar resposta da missão">
+          Enviar
+        </button>
+        <button onClick={onClose} aria-label="Fechar janela de missão">
+          Fechar
+        </button>
       </div>
 
       {resultado && (
-        <div className="resultado">
+        <div
+          className="resultado"
+          role="status"
+          aria-live="polite"
+        >
           <p>{resultado}</p>
           {status === "sucesso" && (
             <img
@@ -68,7 +101,7 @@ export function MissaoModal({ missao, onClose, onConcluir }) {
           {status === "erro" && (
             <img
               src={erro}
-              alt="Erro na resposta da missão"
+              alt="Resposta incorreta, tente novamente"
               width="100"
             />
           )}

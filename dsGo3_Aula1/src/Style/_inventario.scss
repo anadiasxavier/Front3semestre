@@ -1,4 +1,5 @@
 @use './variaveis' as *;
+
 .inventario {
   padding: 2rem;
   text-align: center;
@@ -7,7 +8,7 @@
 
   h2 {
     margin-bottom: 1.5rem;
-    font-size: 2rem;
+    font-size: clamp(1.5rem, 2vw, 2rem); // fonte fluida
   }
 
   .vazio {
@@ -15,24 +16,24 @@
     color: #ccc;
   }
 
-  /* Grid responsivo para exibir as figurinhas */
+  /* Grid responsivo */
   .grid {
     display: grid;
     gap: 1rem;
     grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
     justify-items: center;
-    margin-top: 15px;
+    margin-top: 1rem;
   }
 
   .figurinha {
     background: $card;
     border-radius: 12px;
     padding: 1rem;
-    box-shadow: 0 0 8px rgba(0,0,0,0.4);
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.4);
     transition: transform 0.2s;
     width: 100%;
     max-width: 150px;
-    color:$fundo;
+    color: $fundo;
 
     &:hover {
       transform: scale(1.05);
@@ -52,14 +53,10 @@
   }
 }
 
-/* 🔹 Responsividade */
+/* 🔹 Responsividade Tablets */
 @media (max-width: 768px) {
   .inventario {
     padding: 1rem;
-
-    h2 {
-      font-size: 1.5rem;
-    }
 
     .grid {
       gap: 0.5rem;
@@ -71,22 +68,5 @@
   }
 }
 
-@media (max-width: 480px) {
-  .inventario {
-    h2 {
-      font-size: 1.2rem;
-    }
 
-    .figurinha {
-      max-width: 100px;
 
-      img {
-        max-width: 80px;
-      }
-
-      p {
-        font-size: 0.9rem;
-      }
-    }
-  }
-}

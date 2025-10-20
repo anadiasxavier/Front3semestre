@@ -6,36 +6,31 @@
   backdrop-filter: blur(8px);
   padding: 3rem 2rem;
   border-radius: 20px;
-  color: #dfcaf9;
+  color: #5BC0EB;
   max-width: 1200px;
   margin: 2rem auto 7rem auto;
   overflow-y: auto;
-  max-height: 80vh;
-  /* scroll controlado */
+  max-height: 70vh;
 
-  /* scroll estilizado */
+  /* Scroll estilizado */
   scrollbar-width: thin;
-  scrollbar-color:$destaque-rosa;
   &::-webkit-scrollbar {
     width: 8px;
   }
-
   &::-webkit-scrollbar-thumb {
-    background-color: $destaque-rosa;
     border-radius: 10px;
+    background: rgba(255, 255, 255, 0.3);
   }
-
   &::-webkit-scrollbar-track {
     background: transparent;
   }
-}
 
-/* TÍTULO */
-.conteiner h2 {
-  text-align: center;
-  margin-bottom: 1rem;
-  font-size: 2rem;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  h2 {
+    text-align: center;
+    margin-bottom: 1rem;
+    font-size: clamp(1.5rem, 2.5vw, 2rem); 
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+  }
 }
 
 /* GRID DE MISSÕES */
@@ -45,9 +40,9 @@
   gap: 2rem;
 }
 
-/* CARD */
+/* CARD DE MISSÃO */
 .missao-card {
-  background-color:$card;
+  background-color: $card;
   color: #222;
   border-radius: 16px;
   overflow: hidden;
@@ -59,26 +54,39 @@
   padding: 1.5rem;
   min-height: 220px;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
-  font-size: 18px;
-}
-
-.missao-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.4);
-}
-
-/* TEXTO */
-.missao-card h3 {
-  font-size: 1.3rem;
-}
-
-.missao-card p {
-  line-height: 1.5;
-}
-
-.missao-card .conteudo {
-  font-weight: bold;
   font-size: 1rem;
-  margin-bottom: 0.5rem;
-  color: #6a1b9a;
+
+  &:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.4);
+  }
+
+  h3 {
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+  }
+
+  p {
+    line-height: 1.5;
+    margin-bottom: 0.5rem;
+  }
+
+  .conteudo {
+    font-weight: bold;
+    font-size: 1rem;
+    color: #01284D;
+  }
 }
+
+/* 🔹 Responsividade  */
+@media (max-width: 768px) {
+  .conteiner {
+    padding: 2rem 1rem;
+  }
+
+  .missao-card {
+    min-height: 200px;
+    padding: 1rem;
+  }
+}
+

@@ -5,43 +5,54 @@ dialog.modal {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 50%;
+  width: clamp(300px, 50%, 600px);
   max-height: 80%;
   background: $claro;
   border-radius: 16px;
   padding: 2rem;
   text-align: center;
-
-
-  border: 2px solid $destaque-rosa;
-  box-shadow: 0 0 12px rgba(163, 7, 132, 0.7),
-              0 8px 24px rgba(0, 0, 0, 0.4);
-
+  border: 2px solid #01284D;
+  box-shadow: 
+    0 0 12px rgba(7, 69, 163, 0.7),
+    0 8px 24px rgba(0, 0, 0, 0.4);
   z-index: 1000;
+  overflow-y: auto;
+
+  /* Scroll estilizado */
+  scrollbar-width: thin;
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius: 6px;
+    background: rgba(0, 0, 0, 0.3);
+  }
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
 
   .titulo {
     margin-bottom: 2rem;
-    color: $destaque-rosa;
-    font-size: 1.6rem;
+    color: #01284D;
+    font-size: clamp(1.4rem, 2vw, 1.6rem);
   }
 
   p {
     margin-bottom: 1.5rem;
     color: $fundo;
-    font-size: 1rem;
+    font-size: clamp(0.9rem, 1.5vw, 1rem);
     line-height: 1.5;
   }
 
   .caixaTexto {
-    width: 80%;
+    width: 70%;
     padding: 0.6rem;
     margin-bottom: 1rem;
     border-radius: 6px;
-    border: 2px solid $destaque-rosa;
+    border: 2px solid #01284D;
     font-size: 1.2rem;
     background: $claro;
     color: $fundo;
-    
   }
 
   .modal-botoes {
@@ -49,14 +60,28 @@ dialog.modal {
     justify-content: center;
     gap: 1rem;
     margin-top: 1rem;
+    flex-wrap: wrap; 
   }
 
   .resultado {
     margin-top: 1.5rem;
+    font-size: 1rem;
   }
 
   img {
     margin-top: 1rem;
-    width: 100px;
+    width: clamp(60px, 15%, 100px); 
   }
 }
+
+/*  Responsividade Tablets */
+@media (max-width: 768px) {
+  dialog.modal {
+    padding: 1.5rem;
+
+    .caixaTexto {
+      width: 80%;
+    }
+  }
+}
+

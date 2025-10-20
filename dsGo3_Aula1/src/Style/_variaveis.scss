@@ -3,7 +3,7 @@ $claro: #f0ebeb;
 $card:#dcdff2;
 $sombrasBox: 0 4px 10px rgba(0, 0, 0, 0.3);
 $destaque-rosa: #ff3d7f transparent;
-$gradiente-rosa: linear-gradient(135deg, #2f1048, #e4018d);
+$gradiente-azul: linear-gradient(135deg, #01284D, #014F86, #007BFF);
 $foco: #4c0f32;
 $botao-verde: linear-gradient(135deg, #3ca55c, #6be585);;
 $botao-verdeClaro:linear-gradient(135deg, #4fd37a, #8bf8a6);;
@@ -31,7 +31,7 @@ body {
 button {
   margin-top: 1rem;
   align-self: center;
-  background: $gradiente-rosa;
+  background: $gradiente-azul;
   color: $claro;
   border: none;
   padding: 0.7rem 1.4rem;
@@ -43,7 +43,7 @@ button {
 }
 
 button:hover {
-  background: $gradiente-rosa;
+  background: $gradiente-azul;
   transform: scale(1.05);
   gap: 30px;
 }

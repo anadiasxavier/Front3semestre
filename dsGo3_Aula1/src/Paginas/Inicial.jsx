@@ -6,9 +6,9 @@ export function Inicial() {
 
   return (
     <main className="inicial">
-      <img src={logo} className="logo" alt="Logo DS GO"  />
+      <img src={logo} className="logo" alt="Logo TinkerPapel"  />
      
-      <button onClick={() => navigate('/dsgo')} className='entrar'>
+      <button onClick={() => navigate('/dsgo')} className='entrar'   aria-label="Entrar no jogo TinkerPapel">
         Entrar
       </button>
     </main>
