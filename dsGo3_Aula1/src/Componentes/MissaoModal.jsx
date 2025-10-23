@@ -6,19 +6,17 @@ export function MissaoModal({ missao, onClose, onConcluir }) {
   const [resposta, setResposta] = useState("");
   const [resultado, setResultado] = useState(null);
   const [status, setStatus] = useState(null);
-
   const inputRef = useRef(null);
-
+  const closeButtonRef = useRef(null);
 
   useEffect(() => {
-    if (inputRef.current) {
-      inputRef.current.focus();
-    }
+    if (inputRef.current) inputRef.current.focus();
   }, []);
 
   const verificarResposta = () => {
     if (!resposta.trim()) {
-      alert("Por favor, digite uma resposta antes de enviar!");
+      setResultado("Por favor, digite uma resposta antes de enviar!");
+      setStatus("alerta");
       return;
     }
 
@@ -28,17 +26,12 @@ export function MissaoModal({ missao, onClose, onConcluir }) {
     ) {
       setResultado("Resposta correta! Parabéns!");
       setStatus("sucesso");
-
-     
-      setTimeout(() => {
-        onConcluir(missao.id);
-      }, 1000);
+      setTimeout(() => onConcluir(missao.id), 1000);
     } else {
       setResultado("Resposta incorreta. Tente novamente!");
       setStatus("erro");
     }
   };
-
 
   useEffect(() => {
     const handleKeyDown = (e) => {
@@ -76,10 +69,18 @@ export function MissaoModal({ missao, onClose, onConcluir }) {
       />
 
       <div className="modal-botoes">
-        <button onClick={verificarResposta} aria-label="Enviar resposta da missão">
+        <button
+          onClick={verificarResposta}
+          aria-label="Enviar resposta da missão"
+        >
           Enviar
         </button>
-        <button onClick={onClose} aria-label="Fechar janela de missão">
+        <button
+          onClick={onClose}
+          aria-label="Fechar janela de missão"
+          ref={closeButtonRef}
+          title="Fechar missão"
+        >
           Fechar
         </button>
       </div>
@@ -87,7 +88,7 @@ export function MissaoModal({ missao, onClose, onConcluir }) {
       {resultado && (
         <div
           className="resultado"
-          role="status"
+          role={status === "alerta" ? "alert" : "status"}
           aria-live="polite"
         >
           <p>{resultado}</p>
