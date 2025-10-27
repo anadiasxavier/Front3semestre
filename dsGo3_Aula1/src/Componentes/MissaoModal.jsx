@@ -12,7 +12,8 @@ export function MissaoModal({ missao, onClose, onConcluir }) {
   useEffect(() => {
     if (inputRef.current) inputRef.current.focus();
   }, []);
-
+    
+  // verifica se a resposta esta correta
   const verificarResposta = () => {
     if (!resposta.trim()) {
       setResultado("Por favor, digite uma resposta antes de enviar!");
@@ -33,6 +34,7 @@ export function MissaoModal({ missao, onClose, onConcluir }) {
     }
   };
 
+  // Fecha o modal
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.key === "Escape") onClose();
@@ -49,10 +51,12 @@ export function MissaoModal({ missao, onClose, onConcluir }) {
       aria-modal="true"
       aria-labelledby="titulo-missao"
       aria-describedby="descricao-missao"
-    >
+    > 
+      {/* título e descrição */}
       <h2 id="titulo-missao">{missao.titulo}</h2>
       <p id="descricao-missao">{missao.descricao}</p>
 
+      {/* campo  resposta */}
       <label htmlFor="resposta" className="sr-only">
         Digite sua resposta
       </label>
@@ -67,7 +71,7 @@ export function MissaoModal({ missao, onClose, onConcluir }) {
         required
         aria-required="true"
       />
-
+        {/* botões de ação */}
       <div className="modal-botoes">
         <button
           onClick={verificarResposta}

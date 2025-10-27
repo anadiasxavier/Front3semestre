@@ -4,7 +4,9 @@ import { MissaoCard } from '../Componentes/MissaoCard';
 import { MissaoModal } from '../Componentes/MissaoModal';
 
 export function Missao() {
+  // missao selecionada
   const [missaoSelecionada, setMissaoSelecionada] = useState(null);
+  //missao concluidas
   const [missoesConcluidas, setMissoesConcluidas] = useState([]);
 
   const concluirMissao = (id) => {
@@ -16,6 +18,7 @@ export function Missao() {
     <section className="conteiner" aria-labelledby="titulo-missoes">
       <h2 id="titulo-missoes">Missões</h2>
 
+      {/* lisa das missoes */}
       <div className="missoes-grid" role="list">
         {missoes.map((m) => (
           <MissaoCard
@@ -27,6 +30,7 @@ export function Missao() {
         ))}
       </div>
 
+        {/* abre o modal */}
       {missaoSelecionada && (
         <MissaoModal
           missao={missaoSelecionada}

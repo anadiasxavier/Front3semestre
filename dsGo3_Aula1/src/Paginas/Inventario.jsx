@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 
 export function Inventario() {
+  // armazena as figurinhas 
   const [figurinhas, setFigurinhas] = useState([]);
 
   useEffect(() => {
@@ -8,6 +9,7 @@ export function Inventario() {
     setFigurinhas(armazenado);
   }, []);
 
+  //limpa o inventario
   const limparInventario = () => {
     if (!window.confirm("Deseja realmente limpar o inventário?")) return;
 
@@ -19,7 +21,8 @@ export function Inventario() {
     <main className="conteiner">
       <section className="inventario" aria-labelledby="titulo-inventario">
         <h2 id="titulo-inventario">Inventário</h2>
-
+        
+        {/* limpa todas as figurinhas */}
         <button
           className="limpar-inventario"
           onClick={limparInventario}
@@ -28,6 +31,7 @@ export function Inventario() {
           Limpar Inventário
         </button>
 
+        {/* mensagem vazio ou lista de figurinhas */}
         {figurinhas.length === 0 ? (
           <p className="vazio">Nenhuma figurinha coletada ainda!</p>
         ) : (
