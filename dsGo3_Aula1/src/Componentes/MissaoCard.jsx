@@ -12,6 +12,7 @@ export function MissaoCard({ missao, onIniciarMissao, concluida }) {
       <h3 id={tituloId}>{missao.titulo}</h3>
       <p id={descricaoId}>{missao.missao}</p>
 
+      {/* botao para iniciar  */}
       <button
         onClick={() => onIniciarMissao(missao)}
         disabled={concluida}

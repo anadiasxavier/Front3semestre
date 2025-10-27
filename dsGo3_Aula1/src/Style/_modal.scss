@@ -85,3 +85,35 @@ dialog.modal {
   }
 }
 
+/* Celulares */
+@media (max-width: 480px) {
+  dialog.modal {
+    width: 90%;
+    padding: 1rem;
+    border-radius: 12px;
+
+    p {
+      font-size: 0.9rem;
+    }
+
+    .caixaTexto {
+      width: 90%;
+      font-size: 1rem;
+    }
+
+    .modal-botoes {
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    button {
+      width: 100%;
+      padding: 0.6rem;
+      font-size: 1rem;
+    }
+
+    img {
+      width: 60px;
+    }
+  }
+}

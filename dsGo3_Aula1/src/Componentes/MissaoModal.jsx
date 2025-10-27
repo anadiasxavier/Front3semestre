@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
-import sucesso from "../assets/win.png";
-import erro from "../assets/raios.png";
+import sucesso from "../assets/sucesso.png";
+import erro from "../assets/semsucesso.png";
 
 export function MissaoModal({ missao, onClose, onConcluir }) {
   const [resposta, setResposta] = useState("");

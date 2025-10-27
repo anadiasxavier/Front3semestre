@@ -46,6 +46,7 @@
 }
 
 /*  Responsividade */
+// tablet
 @media (max-width: 768px) {
   .menu {
     width: 90%;
@@ -62,3 +63,30 @@
   }
 }
 
+// celular
+@media (max-width: 480px) {
+  .menu {
+    width: 95%;
+    padding: 0.3rem;
+    bottom: 10px;
+    border-radius: 0.8rem;
+
+    ul {
+      gap: 0.5rem;
+      flex-wrap: nowrap; 
+    }
+
+    li {
+      flex: 1;
+    }
+
+    img {
+      width: 50px;
+      height: 50px;
+    }
+
+    figure {
+      font-size: 0.75rem;
+    }
+  }
+}
