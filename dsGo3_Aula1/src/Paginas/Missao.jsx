@@ -6,12 +6,28 @@ import { MissaoModal } from '../Componentes/MissaoModal';
 export function Missao() {
   // missao selecionada
   const [missaoSelecionada, setMissaoSelecionada] = useState(null);
-  //missao concluidas
-  const [missoesConcluidas, setMissoesConcluidas] = useState([]);
+  const [refresh, setRefresh] = useState(0);
+ 
 
   const concluirMissao = (id) => {
-    setMissoesConcluidas((prev) => [...prev, id]);
+    const inventario = JSON.parse(localStorage.getItem("inventario")) || [];
+    const m = missoes.find((ms)=> ms.id === id);
+
+    const figurinha  = {
+      id: m.id,
+      nome: m.titulo || `figurinha ${m.id}`,
+      figura: m.figura || '/src/assets/sucesso.png',
+
+    };
+    
+    if(!inventario.some((f) => f.id === id)){
+      inventario.push(figurinha);
+      localStorage.setItem("inventario", JSON.stringify(inventario));
+    }
+
+    
     setMissaoSelecionada(null);
+    setRefresh((r)=> r + 1);
   };
 
   return (
@@ -22,10 +38,10 @@ export function Missao() {
       <div className="missoes-grid" role="list">
         {missoes.map((m) => (
           <MissaoCard
-            key={m.id}
+            key={`${m.id} - ${refresh}`}
             missao={m}
             onIniciarMissao={setMissaoSelecionada}
-            concluida={missoesConcluidas.includes(m.id)}
+           
           />
         ))}
       </div>
@@ -35,7 +51,7 @@ export function Missao() {
         <MissaoModal
           missao={missaoSelecionada}
           onClose={() => setMissaoSelecionada(null)}
-          onConcluir={() => concluirMissao(missaoSelecionada.id)}
+          onConcluir={concluirMissao}
         />
       )}
     </section>

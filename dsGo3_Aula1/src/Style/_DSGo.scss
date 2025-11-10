@@ -25,6 +25,7 @@
   }
 
   // Responsividade
+  // tablet
   @media (max-width: 768px) {
     background-position: top;
     
@@ -37,4 +38,17 @@
     }
   }
 
-}
+ 
+  @media (max-width: 480px) {
+    height: auto;
+    background-position: top center;
+
+    &::before {
+      backdrop-filter: blur(0.8px);
+    }
+
+    > * {
+      padding: 0.5rem;
+      text-align: center;
+    }
+  }}

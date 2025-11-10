@@ -38,7 +38,7 @@ export function Inventario() {
           <ul className="grid" role="list">
             {figurinhas.map((f) => (
               <li key={f.id} className="figurinha">
-                <img src={f.imagem} alt={f.nome} />
+                <img src={f.figura} alt={f.nome} />
               </li>
             ))}
           </ul>

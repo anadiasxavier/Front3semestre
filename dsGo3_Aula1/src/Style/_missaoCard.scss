@@ -78,7 +78,7 @@
   }
 }
 
-/* 🔹 Responsividade  */
+/* tablets  */
 @media (max-width: 768px) {
   .conteiner {
     padding: 2rem 1rem;
@@ -89,4 +89,29 @@
     padding: 1rem;
   }
 }
+// celular
+@media (max-width: 480px) {
+  .conteiner {
+    padding: 1.5rem 0.5rem;
+    max-height: 60vh;
+  }
 
+  .missoes-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .missao-card {
+    min-height: 160px;
+    padding: 0.8rem;
+    font-size: 0.9rem;
+  }
+
+  .missao-card h3 {
+    font-size: 1rem;
+  }
+
+  .missao-card p {
+    font-size: 0.85rem;
+  }
+}
