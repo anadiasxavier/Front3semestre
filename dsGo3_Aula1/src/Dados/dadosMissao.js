@@ -90,8 +90,8 @@ export const missoes = [
     id: 10,
     titulo: "Conhecimentos Gerais",
     missao: "Pergunta 10",   
-    descricao: "Qual ferramenta é usada para versionamento de código?",
-    respostaCorreta: "git",
+    descricao: "Qual professor dar aula de IOT para a DS16?",
+    respostaCorreta: "modesto",
     status: 'disponivel',
      figura: '/src/assets/figuras/figura10.png'
   }
