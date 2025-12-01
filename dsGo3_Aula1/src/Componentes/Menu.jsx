@@ -11,7 +11,7 @@ export function Menu() {
       <ul>
         <li>
           {/* link para missoes */}
-          <Link to="missao" aria-label="Ir para Missões">
+          <Link to="/dsgo/missao" aria-label="Ir para Missões">
             <figure>
               <img src={missao} alt="Ícone de Missões" />
               <figcaption>Missões</figcaption>
@@ -21,7 +21,7 @@ export function Menu() {
 
         <li>
           {/* link para inventario */}
-          <Link to="inventario" aria-label="Abrir Inventário">
+          <Link to="/dsgo/inventario" aria-label="Abrir Inventário">
             <figure>
               <img src={bau} alt="Ícone de Inventário" />
               <figcaption>Inventário</figcaption>
@@ -29,9 +29,9 @@ export function Menu() {
           </Link>
         </li>
 
-        <li>
+                <li>
           {/* link para mapa */}
-          <Link to="mapa" aria-label="Abrir GeoLocalização">
+          <Link to="/dsgo/mapa" aria-label="Abrir GeoLocalização">
             <figure>
               <img src={mapa} alt="Ícone de GeoLocalização" />
               <figcaption>GeoLocalização</figcaption>
@@ -41,7 +41,7 @@ export function Menu() {
 
         <li>
           {/* link para camera */}
-          <Link to="camera" aria-label="Abrir Câmera">
+          <Link to="/dsgo/camera" aria-label="Abrir Câmera">
             <figure>
               <img src={camera} alt="Ícone de Câmera" />
               <figcaption>Câmera</figcaption>

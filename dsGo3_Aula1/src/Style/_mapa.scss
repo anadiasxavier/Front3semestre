@@ -1,0 +1,125 @@
+.pagina-mapa {
+  display: flex;
+  gap: 2rem;
+  padding: 2rem;
+  align-items: flex-start;
+  justify-content: center;
+
+  // CARD ESQUERDO
+  .mapa-card {
+    width: 380px;
+    padding: 1.8rem;
+    background: rgba(0, 0, 0, 0.75);
+    border-radius: 18px;
+    border: 2px solid #014F86; 
+    backdrop-filter: blur(4px);
+
+    display: flex;
+    flex-direction: column;
+    gap: 1.4rem;
+
+    .titulo-card {
+      font-size: 1.8rem;
+      text-align: center;
+      color: white;
+      margin-bottom: 0.3rem;
+      font-weight: 700;
+    }
+
+    
+    .bloco {
+      border: 1px solid #014F86;
+      border-radius: 14px;
+      padding: 1rem 1.2rem;
+
+      .titulo-bloco {
+        color: #014F86;
+        font-size: 1.3rem;
+        font-weight: 600;
+        margin-bottom: 0.6rem;
+      }
+
+      .campo {
+        display: flex;
+        flex-direction: column;
+        gap: 0.3rem;
+        margin-bottom: 0.6rem;
+
+        .label {
+          color: white;
+          font-size: 0.9rem;
+        }
+
+        .input {
+          width: 100%;
+          padding: 0.8rem;
+          border: 1px solid #444;
+          background: #1a1a1a;
+          border-radius: 10px;
+          color: white;
+        }
+      }
+
+      .erro {
+        color: #014F86;
+        font-size: 0.85rem;
+        margin-top: -0.3rem;
+      }
+
+      .btn-local {
+        margin-top: 0.4rem;
+        width: 100%;
+        padding: 0.8rem;
+        border-radius: 12px;
+        border: none;
+        color: white;
+        background-color: transparent;
+        border: 1px solid #014F86;
+        cursor: pointer;
+        transition: 0.3s;
+
+        &:hover {
+          background-color: rgba(255, 47, 159, 0.2);
+        }
+      }
+    }
+
+    .btn-gerar {
+      margin-top: 0.5rem;
+      padding: 0.8rem;
+      width: 100%;
+      border-radius: 12px;
+      font-size: 1.1rem;
+      border: none;
+      cursor: pointer;
+    }
+  }
+
+  // MAPA À DIREITA
+ .mapa-area {
+  flex: 1;
+  display: flex;
+
+  #mapa {
+    flex: 1;
+    min-height: 500px;
+  }
+}
+
+}
+
+// RESPONSIVIDADE
+@media (max-width: 900px) {
+  .pagina-mapa {
+    flex-direction: column;
+
+    .mapa-card {
+      width: 100%;
+    }
+
+    .mapa-area {
+      width: 100%;
+      min-height: 400px;
+    }
+  }
+}

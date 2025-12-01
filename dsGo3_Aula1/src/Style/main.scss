@@ -1,8 +1,10 @@
-@use './variaveis';
-@use './inicial';
-@use './DSGo';
-@use './menu';
-@use './missaoCard';
-@use './modal';
-@use './inventario';
-@use './camera';
+// main.scss - ponto único de importação
+@use "variaveis";
+@use "inicial";
+@use "DSGo";
+@use "menu";
+@use "missaoCard";
+@use "modal";
+@use "inventario";
+@use "camera";
+@use "./_mapa";
